@@ -8,11 +8,11 @@ import javax.persistence.Id;
 public class Scooters {
     @Id
     @GeneratedValue
-    long scooter_ID;
-    float charge;
-    boolean is_active;
-    float longitude;
-    float latitude;
+    private long scooter_ID;
+    private float charge;
+    private boolean is_active;
+    private float longitude;
+    private float latitude;
 
 
     public Scooters() {
