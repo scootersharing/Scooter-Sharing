@@ -1,4 +1,4 @@
-package scooter_sharing.app.Resources;
+package scooter_sharing.app.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +14,7 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-public class ScootersResources {
+public class ScootersController {
     @Autowired
     private ScootersRepository scootersRepository;
 
