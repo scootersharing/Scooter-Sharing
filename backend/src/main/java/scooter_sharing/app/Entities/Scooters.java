@@ -1,12 +1,11 @@
 package scooter_sharing.app.Entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.Set;
 
 @Entity
-public class Scooters {
+public class Scooters implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long scooter_ID;
@@ -14,7 +13,16 @@ public class Scooters {
     private boolean is_active;
     private float longitude;
     private float latitude;
+    @OneToMany(mappedBy = "scooters", cascade = CascadeType.ALL)
+    private Set<UsingHistory> usingHistory;
 
+    public Set<UsingHistory> getUsingHistory() {
+        return usingHistory;
+    }
+
+    public void setUsingHistory(Set<UsingHistory> usingHistory) {
+        this.usingHistory = usingHistory;
+    }
 
     public Scooters() {
         charge = 0;
