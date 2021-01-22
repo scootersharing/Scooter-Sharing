@@ -1,0 +1,26 @@
+[
+    {
+        "scooter_ID": 1,
+        "charge": 67.0,
+        "is_active": false,
+        "longitude": 39.76020021754169,
+        "latitude": 40.999592135534286
+    },
+
+    {
+        "scooter_ID": 2,
+        "charge": 28.0,
+        "is_active": false,
+        "longitude": 39.77554483081738, 
+        "latitude": 40.99306179141382
+    },
+
+    {
+        "scooter_ID": 3,
+        "charge": 61.0,
+        "is_active": false,
+        "longitude": 39.76649040978788, 
+        "latitude": 40.99866869362004
+    }
+
+]
