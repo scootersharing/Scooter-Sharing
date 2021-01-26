@@ -39,7 +39,7 @@ public class UsingHistory implements Serializable {
         return Objects.hash(scooters.getScooter_ID(), users.getUser_ID(), history_ID);
     }
 
-    public UsingHistory(float start_longitude, float start_latitude, float end_longitude, float end_latitude, Timestamp start_timestamp, Timestamp end_timestamp, Scooters scooters, Users users) {z
+    public UsingHistory(float start_longitude, float start_latitude, float end_longitude, float end_latitude, Timestamp start_timestamp, Timestamp end_timestamp, Scooters scooters, Users users) {
         this.start_longitude = start_longitude;
         this.start_latitude = start_latitude;
         this.end_longitude = end_longitude;
