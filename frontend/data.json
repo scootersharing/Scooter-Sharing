@@ -17,7 +17,7 @@
 
     {
         "scooter_ID": 3,
-        "charge": 61.0,
+        "charge": 8.0,
         "is_active": false,
         "longitude": 39.76649040978788, 
         "latitude": 40.99866869362004
