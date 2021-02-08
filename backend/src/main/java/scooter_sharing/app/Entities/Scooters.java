@@ -2,27 +2,42 @@ package scooter_sharing.app.Entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 import java.util.Set;
 
 @Entity
 public class Scooters implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "scooter_ID")
     private long scooter_ID;
     private float charge;
     private boolean is_active;
     private float longitude;
     private float latitude;
-    @OneToMany(mappedBy = "scooters", cascade = CascadeType.ALL)
-    private Set<UsingHistory> usingHistory;
+    @OneToMany(mappedBy="scooters")
+    private List<UsingHistory> usingHistory;
+//    @OneToMany(mappedBy = "scooters")
+//    Set<UsingHistory> usinghistories;
+//
+//    public Set<UsingHistory> getUsinghistories() {
+//        return usinghistories;
+//    }
+//
+//    public void setUsinghistories(Set<UsingHistory> usinghistories) {
+//        this.usinghistories = usinghistories;
+//    }
 
-    public Set<UsingHistory> getUsingHistory() {
-        return usingHistory;
-    }
+    //    @OneToMany(mappedBy = "scooters", cascade = CascadeType.PERSIST)
+//    private Set<UsingHistory> usingHistory;
 
-    public void setUsingHistory(Set<UsingHistory> usingHistory) {
-        this.usingHistory = usingHistory;
-    }
+//    public Set<UsingHistory> getUsingHistory() {
+//        return usingHistory;
+//    }
+//
+//    public void setUsingHistory(Set<UsingHistory> usingHistory) {
+//        this.usingHistory = usingHistory;
+//    }
 
     public Scooters() {
         charge = 0;

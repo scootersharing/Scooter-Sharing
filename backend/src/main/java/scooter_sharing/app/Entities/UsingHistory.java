@@ -3,7 +3,6 @@ package scooter_sharing.app.Entities;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Timestamp;
-import java.util.Objects;
 
 @Entity
 public class UsingHistory implements Serializable {
@@ -16,28 +15,28 @@ public class UsingHistory implements Serializable {
     private float end_latitude;
     private java.sql.Timestamp start_timestamp;
     private java.sql.Timestamp end_timestamp;
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "scooter_ID")
+    @ManyToOne(targetEntity = Scooters.class, fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+    @JoinColumn(name = "scooter_ID", nullable = false,referencedColumnName = "scooter_ID")
     private Scooters scooters;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "user_ID")
+    @ManyToOne(targetEntity = Users.class, fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+    @JoinColumn(name = "user_ID", nullable = false,referencedColumnName = "user_ID")
     private Users users;
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof UsingHistory)) return false;
-        UsingHistory that = (UsingHistory) o;
-        return Objects.equals(users.getUser_ID(), that.users.getUser_ID()) &&
-                Objects.equals(scooters.getScooter_ID(), that.scooters.getScooter_ID()) &&
-                Objects.equals(history_ID, that.history_ID);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(scooters.getScooter_ID(), users.getUser_ID(), history_ID);
-    }
+//
+//    @Override
+//    public boolean equals(Object o) {
+//        if (this == o) return true;
+//        if (!(o instanceof UsingHistory)) return false;
+//        UsingHistory that = (UsingHistory) o;
+//        return Objects.equals(users.getUser_ID(), that.users.getUser_ID()) &&
+//                Objects.equals(scooters.getScooter_ID(), that.scooters.getScooter_ID()) &&
+//                Objects.equals(history_ID, that.history_ID);
+//    }
+//
+//    @Override
+//    public int hashCode() {
+//        return Objects.hash(scooters.getScooter_ID(), users.getUser_ID(), history_ID);
+//    }
 
     public UsingHistory(float start_longitude, float start_latitude, float end_longitude, float end_latitude, Timestamp start_timestamp, Timestamp end_timestamp, Scooters scooters, Users users) {
         this.start_longitude = start_longitude;

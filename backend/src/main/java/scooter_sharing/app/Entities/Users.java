@@ -4,12 +4,14 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
 public class Users implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_ID")
     private long user_ID;
     @Column(length = 43)
     @NotBlank(message = "Username field must not be blank")
@@ -21,8 +23,20 @@ public class Users implements Serializable {
     @NotBlank(message = "Email field must not be blank")
     private String email;
     private double balance;
-    @OneToMany(mappedBy = "users", cascade = CascadeType.ALL)
-    private Set<UsingHistory> usingHistory = new HashSet<>();
+    @OneToMany(mappedBy="users")
+    private List<UsingHistory> usingHistory;
+//    @OneToMany(mappedBy = "users")
+//    Set<UsingHistory> usinghistories;
+//
+//    public Set<UsingHistory> getUsinghistories() {
+//        return usinghistories;
+//    }
+//
+//    public void setUsinghistories(Set<UsingHistory> usinghistories) {
+//        this.usinghistories = usinghistories;
+//    }
+    //    @OneToMany(mappedBy = "users", cascade = CascadeType.PERSIST)
+//    private Set<UsingHistory> usingHistory = new HashSet<>();
 
     public Users(String username, String password, String email) {
         this.username = username;
@@ -50,13 +64,13 @@ public class Users implements Serializable {
         this.user_ID = user_ID;
     }
 
-    public Set<UsingHistory> getUsingHistory() {
-        return usingHistory;
-    }
-
-    public void setUsingHistory(Set<UsingHistory> usingHistory) {
-        this.usingHistory = usingHistory;
-    }
+//    public Set<UsingHistory> getUsingHistory() {
+//        return usingHistory;
+//    }
+//
+//    public void setUsingHistory(Set<UsingHistory> usingHistory) {
+//        this.usingHistory = usingHistory;
+//    }
 
     public String getUsername() {
         return username;
