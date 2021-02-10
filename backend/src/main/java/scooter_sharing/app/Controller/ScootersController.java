@@ -1,6 +1,7 @@
 package scooter_sharing.app.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -15,6 +16,13 @@ import java.util.List;
 public class ScootersController {
     @Autowired
     private ScootersRepository scootersRepository;
+
+    @GetMapping(value = "/", produces = MediaType.TEXT_HTML_VALUE)
+    @ResponseBody
+    public String welcomeAsHTML(){
+        return "<html>\n" + "<head><title>Welcome to Scooter Sharing App</title></head>\n" +
+                "<body>\n" + "Hello world\n" + "</body>\n" + "</html>";
+    }
 
     @GetMapping("/scooters")
     public List<Scooters> retrieveAllScooters() {
