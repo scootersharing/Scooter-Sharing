@@ -10,6 +10,7 @@ import scooter_sharing.app.Entities.Users;
 import scooter_sharing.app.Repository.UsersRepository;
 
 import javax.validation.Valid;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,6 +23,11 @@ public class UsersController {
     @GetMapping("/users")
     public List<Users> retrieveAllUsers() {
         return usersRepository.findAll();
+    }
+
+    @GetMapping("/users/{id}")
+    public List<Users> retrieveUser(@PathVariable long id) {
+        return usersRepository.findAllById(Collections.singleton(id));
     }
 
     @PostMapping("/users")

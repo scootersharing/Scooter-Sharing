@@ -11,6 +11,7 @@ import scooter_sharing.app.Repository.UsersRepository;
 import scooter_sharing.app.Repository.UsingHistoryRepository;
 
 import java.net.URI;
+import java.util.Collections;
 import java.util.List;
 
 @RestController
@@ -26,7 +27,10 @@ public class UsingHistoryController {
     public List<UsingHistory> retrieveAllUsingHistory() {
         return usingHistoryRepository.findAll();
     }
-
+    @GetMapping("/usinghistory/{id}")
+    public List<UsingHistory> retrieveUsingHistory(@PathVariable long id) {
+        return usingHistoryRepository.findAllById(Collections.singleton(id));
+    }
     @PostMapping("/usinghistory")
     public ResponseEntity<Object> addNewUsing(@RequestBody UsingHistoryModel usingHistoryModel) {
         UsingHistory savedUsingHistory = new UsingHistory();
