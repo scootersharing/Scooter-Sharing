@@ -7,13 +7,11 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 import scooter_sharing.app.Entities.UserEntities;
+import scooter_sharing.app.Models.UserModel;
 import scooter_sharing.app.Repository.UsersRepository;
 
 import javax.validation.Valid;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @RestController
 public class UsersController {
@@ -21,13 +19,29 @@ public class UsersController {
     private UsersRepository usersRepository;
 
     @GetMapping("/users")
-    public List<UserEntities> retrieveAllUsers() {
-        return usersRepository.findAll();
+    public List<UserModel> retrieveAllUsers() {
+        List<UserModel> userModels = new ArrayList<>();
+        for(UserEntities userEntities:usersRepository.findAll()){
+            UserModel userModel = new UserModel();
+            userModel.setUsername(userEntities.getUsername());
+            userModel.setBalance(userEntities.getBalance());
+            userModel.setEmail(userEntities.getEmail());
+            userModels.add(userModel);
+        }
+        return userModels;
     }
 
     @GetMapping("/users/{id}")
-    public List<UserEntities> retrieveUser(@PathVariable long id) {
-        return usersRepository.findAllById(Collections.singleton(id));
+    public List<UserModel> retrieveUser(@PathVariable long id) {
+        List<UserModel> userModels = new ArrayList<>();
+        for(UserEntities userEntities:usersRepository.findAllById(Collections.singleton(id))){
+            UserModel userModel = new UserModel();
+            userModel.setUsername(userEntities.getUsername());
+            userModel.setBalance(userEntities.getBalance());
+            userModel.setEmail(userEntities.getEmail());
+            userModels.add(userModel);
+        }
+        return userModels;
     }
 
     @PostMapping("/users")

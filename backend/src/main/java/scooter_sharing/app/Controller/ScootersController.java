@@ -6,9 +6,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import scooter_sharing.app.Entities.ScooterEntities;
+import scooter_sharing.app.Models.ScooterModel;
 import scooter_sharing.app.Repository.ScootersRepository;
 
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -25,13 +27,31 @@ public class ScootersController {
     }
 
     @GetMapping("/scooters")
-    public List<ScooterEntities> retrieveAllScooters() {
-        return scootersRepository.findAll();
+    public List<ScooterModel> retrieveAllScooters() {
+        List<ScooterModel> scooterModels = new ArrayList<>();
+        for(ScooterEntities scooterEntities:scootersRepository.findAll()){
+            ScooterModel scooterModel = new ScooterModel();
+            scooterModel.setCharge(scooterEntities.getCharge());
+            scooterModel.setIs_active(scooterEntities.isIs_active());
+            scooterModel.setLatitude(scooterEntities.getLatitude());
+            scooterModel.setLongitude(scooterEntities.getLongitude());
+            scooterModels.add(scooterModel);
+        }
+        return scooterModels;
     }
 
     @GetMapping("/scooters/{id}")
-    public List<ScooterEntities> retrieveScooter(@PathVariable long id) {
-        return scootersRepository.findAllById(Collections.singleton(id));
+    public List<ScooterModel> retrieveScooter(@PathVariable long id) {
+        List<ScooterModel> scooterModels = new ArrayList<>();
+        for(ScooterEntities scooterEntities:scootersRepository.findAllById(Collections.singleton(id))){
+            ScooterModel scooterModel = new ScooterModel();
+            scooterModel.setCharge(scooterEntities.getCharge());
+            scooterModel.setIs_active(scooterEntities.isIs_active());
+            scooterModel.setLatitude(scooterEntities.getLatitude());
+            scooterModel.setLongitude(scooterEntities.getLongitude());
+            scooterModels.add(scooterModel);
+        }
+        return scooterModels;
     }
 
     @PostMapping("/scooters")
