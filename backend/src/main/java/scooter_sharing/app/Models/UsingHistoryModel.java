@@ -1,4 +1,4 @@
-package scooter_sharing.app.Entities;
+package scooter_sharing.app.Models;
 
 import java.sql.Timestamp;
 
