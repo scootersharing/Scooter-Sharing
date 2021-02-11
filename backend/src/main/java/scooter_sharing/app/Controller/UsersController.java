@@ -6,7 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
-import scooter_sharing.app.Entities.Users;
+import scooter_sharing.app.Entities.UserEntities;
 import scooter_sharing.app.Repository.UsersRepository;
 
 import javax.validation.Valid;
@@ -21,18 +21,18 @@ public class UsersController {
     private UsersRepository usersRepository;
 
     @GetMapping("/users")
-    public List<Users> retrieveAllUsers() {
+    public List<UserEntities> retrieveAllUsers() {
         return usersRepository.findAll();
     }
 
     @GetMapping("/users/{id}")
-    public List<Users> retrieveUser(@PathVariable long id) {
+    public List<UserEntities> retrieveUser(@PathVariable long id) {
         return usersRepository.findAllById(Collections.singleton(id));
     }
 
     @PostMapping("/users")
-    ResponseEntity<String> addUser(@Valid @RequestBody Users users) {
-        usersRepository.save(users);
+    ResponseEntity<String> addUser(@Valid @RequestBody UserEntities userEntities) {
+        usersRepository.save(userEntities);
         return ResponseEntity.ok("User is valid and saved.");
     }
 

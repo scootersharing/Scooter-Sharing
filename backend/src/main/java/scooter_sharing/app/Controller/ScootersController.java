@@ -5,7 +5,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-import scooter_sharing.app.Entities.Scooters;
+import scooter_sharing.app.Entities.ScooterEntities;
 import scooter_sharing.app.Repository.ScootersRepository;
 
 import java.net.URI;
@@ -25,21 +25,21 @@ public class ScootersController {
     }
 
     @GetMapping("/scooters")
-    public List<Scooters> retrieveAllScooters() {
+    public List<ScooterEntities> retrieveAllScooters() {
         return scootersRepository.findAll();
     }
 
     @GetMapping("/scooters/{id}")
-    public List<Scooters> retrieveScooter(@PathVariable long id) {
+    public List<ScooterEntities> retrieveScooter(@PathVariable long id) {
         return scootersRepository.findAllById(Collections.singleton(id));
     }
 
     @PostMapping("/scooters")
-    public ResponseEntity<Object> createStudent(@RequestBody Scooters scooters) {
-        Scooters savedScooters = scootersRepository.save(scooters);
+    public ResponseEntity<Object> createStudent(@RequestBody ScooterEntities scooterEntities) {
+        ScooterEntities savedScooterEntities = scootersRepository.save(scooterEntities);
 
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-                .buildAndExpand(savedScooters.getScooter_ID()).toUri();
+                .buildAndExpand(savedScooterEntities.getScooter_ID()).toUri();
 
         return ResponseEntity.created(location).build();
 
