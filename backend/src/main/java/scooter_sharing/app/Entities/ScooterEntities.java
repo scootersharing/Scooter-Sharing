@@ -3,10 +3,9 @@ package scooter_sharing.app.Entities;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
-import java.util.Set;
 
 @Entity
-public class Scooters implements Serializable {
+public class ScooterEntities implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "scooter_ID")
@@ -15,52 +14,52 @@ public class Scooters implements Serializable {
     private boolean is_active;
     private float longitude;
     private float latitude;
-    @OneToMany(mappedBy="scooters")
-    private List<UsingHistory> usingHistory;
+    @OneToMany(mappedBy="scooterEntities")
+    private List<UsingHistoryEntities> usingHistoryEntities;
 //    @OneToMany(mappedBy = "scooters")
-//    Set<UsingHistory> usinghistories;
+//    Set<UsingHistoryEntities> usinghistories;
 //
-//    public Set<UsingHistory> getUsinghistories() {
+//    public Set<UsingHistoryEntities> getUsinghistories() {
 //        return usinghistories;
 //    }
 //
-//    public void setUsinghistories(Set<UsingHistory> usinghistories) {
+//    public void setUsinghistories(Set<UsingHistoryEntities> usinghistories) {
 //        this.usinghistories = usinghistories;
 //    }
 
     //    @OneToMany(mappedBy = "scooters", cascade = CascadeType.PERSIST)
-//    private Set<UsingHistory> usingHistory;
+//    private Set<UsingHistoryEntities> usingHistoryEntities;
 
-//    public Set<UsingHistory> getUsingHistory() {
-//        return usingHistory;
+//    public Set<UsingHistoryEntities> getUsingHistory() {
+//        return usingHistoryEntities;
 //    }
 //
-//    public void setUsingHistory(Set<UsingHistory> usingHistory) {
-//        this.usingHistory = usingHistory;
+//    public void setUsingHistory(Set<UsingHistoryEntities> usingHistoryEntities) {
+//        this.usingHistoryEntities = usingHistoryEntities;
 //    }
 
-    public Scooters() {
+    public ScooterEntities() {
         charge = 0;
         is_active = false;
         longitude = 0;
         latitude = 0;
     }
 
-    public Scooters(float charge) {
+    public ScooterEntities(float charge) {
         this.charge = charge;
         is_active = false;
         longitude = 0;
         latitude = 0;
     }
 
-    public Scooters(float longitude, float latitude) {
+    public ScooterEntities(float longitude, float latitude) {
         this.longitude = longitude;
         this.latitude = latitude;
         charge = 0;
         is_active = false;
     }
 
-    public Scooters(float charge, boolean is_active, float longitude, float latitude) {
+    public ScooterEntities(float charge, boolean is_active, float longitude, float latitude) {
         this.charge = charge;
         this.is_active = is_active;
         this.longitude = longitude;

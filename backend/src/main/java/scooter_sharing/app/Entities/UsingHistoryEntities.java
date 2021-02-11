@@ -5,7 +5,7 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 
 @Entity
-public class UsingHistory implements Serializable {
+public class UsingHistoryEntities implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long history_ID;
@@ -15,54 +15,54 @@ public class UsingHistory implements Serializable {
     private float end_latitude;
     private java.sql.Timestamp start_timestamp;
     private java.sql.Timestamp end_timestamp;
-    @ManyToOne(targetEntity = Scooters.class, fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+    @ManyToOne(targetEntity = ScooterEntities.class, fetch=FetchType.EAGER, cascade=CascadeType.ALL)
     @JoinColumn(name = "scooter_ID", nullable = false,referencedColumnName = "scooter_ID")
-    private Scooters scooters;
+    private ScooterEntities scooterEntities;
 
-    @ManyToOne(targetEntity = Users.class, fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+    @ManyToOne(targetEntity = UserEntities.class, fetch=FetchType.EAGER, cascade=CascadeType.ALL)
     @JoinColumn(name = "user_ID", nullable = false,referencedColumnName = "user_ID")
-    private Users users;
+    private UserEntities userEntities;
 //
 //    @Override
 //    public boolean equals(Object o) {
 //        if (this == o) return true;
-//        if (!(o instanceof UsingHistory)) return false;
-//        UsingHistory that = (UsingHistory) o;
-//        return Objects.equals(users.getUser_ID(), that.users.getUser_ID()) &&
-//                Objects.equals(scooters.getScooter_ID(), that.scooters.getScooter_ID()) &&
+//        if (!(o instanceof UsingHistoryEntities)) return false;
+//        UsingHistoryEntities that = (UsingHistoryEntities) o;
+//        return Objects.equals(userEntities.getUser_ID(), that.userEntities.getUser_ID()) &&
+//                Objects.equals(scooterEntities.getScooter_ID(), that.scooterEntities.getScooter_ID()) &&
 //                Objects.equals(history_ID, that.history_ID);
 //    }
 //
 //    @Override
 //    public int hashCode() {
-//        return Objects.hash(scooters.getScooter_ID(), users.getUser_ID(), history_ID);
+//        return Objects.hash(scooterEntities.getScooter_ID(), userEntities.getUser_ID(), history_ID);
 //    }
 
-    public UsingHistory(float start_longitude, float start_latitude, float end_longitude, float end_latitude, Timestamp start_timestamp, Timestamp end_timestamp, Scooters scooters, Users users) {
+    public UsingHistoryEntities(float start_longitude, float start_latitude, float end_longitude, float end_latitude, Timestamp start_timestamp, Timestamp end_timestamp, ScooterEntities scooterEntities, UserEntities userEntities) {
         this.start_longitude = start_longitude;
         this.start_latitude = start_latitude;
         this.end_longitude = end_longitude;
         this.end_latitude = end_latitude;
         this.start_timestamp = start_timestamp;
         this.end_timestamp = end_timestamp;
-        this.scooters = scooters;
-        this.users = users;
+        this.scooterEntities = scooterEntities;
+        this.userEntities = userEntities;
     }
 
-    public Scooters getScooters() {
-        return scooters;
+    public ScooterEntities getScooters() {
+        return scooterEntities;
     }
 
-    public void setScooters(Scooters scooters) {
-        this.scooters = scooters;
+    public void setScooters(ScooterEntities scooterEntities) {
+        this.scooterEntities = scooterEntities;
     }
 
-    public Users getUsers() {
-        return users;
+    public UserEntities getUsers() {
+        return userEntities;
     }
 
-    public void setUsers(Users users) {
-        this.users = users;
+    public void setUsers(UserEntities userEntities) {
+        this.userEntities = userEntities;
     }
 
     public long getHistory_ID() {
@@ -73,7 +73,7 @@ public class UsingHistory implements Serializable {
         this.history_ID = history_ID;
     }
 
-    public UsingHistory() {
+    public UsingHistoryEntities() {
 
     }
 
