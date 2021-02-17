@@ -1,6 +1,7 @@
 package scooter_sharing.app.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -54,14 +55,27 @@ public class ScootersController {
         return scooterModels;
     }
 
+    @PostMapping("/scooters/mass")
+    public ResponseEntity<Object> massCreateStudent(@RequestBody List<ScooterEntities> scooterEntitiesList){
+        try {
+            scootersRepository.saveAll(scooterEntitiesList);
+            return new ResponseEntity<>("Kullanıcılar başarı ile eklendi!", HttpStatus.OK);
+        }
+        catch (Exception e){
+
+        }
+        return new ResponseEntity<>("Hata oluştu", HttpStatus.BAD_REQUEST);
+    }
+
     @PostMapping("/scooters")
     public ResponseEntity<Object> createStudent(@RequestBody ScooterEntities scooterEntities) {
-        ScooterEntities savedScooterEntities = scootersRepository.save(scooterEntities);
+        try {
+            ScooterEntities savedScooterEntities = scootersRepository.save(scooterEntities);
+            return new ResponseEntity<>("Kullanıcı başarı ile eklendi!", HttpStatus.OK);
+        }
+        catch (Exception e){
 
-        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-                .buildAndExpand(savedScooterEntities.getScooter_ID()).toUri();
-
-        return ResponseEntity.created(location).build();
-
+        }
+        return new ResponseEntity<>("Hata oluştu", HttpStatus.BAD_REQUEST);
     }
 }
